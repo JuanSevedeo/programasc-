@@ -1,39 +1,63 @@
 #include <iostream>
-#include <String>
-
+#include <string>
 using namespace std;
 
-class Circulo{
-	private:
-		float pi = 3.1416;
-	public: 
-		float radio;
-		
-	float Area(){
-		return pi * (radio * radio);
-	}
-	float Perimetro(){
-		return 2 * pi * radio;
-	}
+class Circulo {
+private:
+    const float PI = 3.1416;
+    float radio;
+
+public:
+    // Constructor
+    Circulo(float radio = 0) : radio(radio) {}
+
+    // Getter y Setter para radio
+    float getRadio() const {
+        return radio;
+    }
+
+    void setRadio(float radio) {
+        this->radio = radio;
+    }
+
+    // Función para calcular el área
+    float calcularArea() const {
+        return PI * (radio * radio);
+    }
+
+    // Función para calcular el perímetro
+    float calcularPerimetro() const {
+        return 2 * PI * radio;
+    }
 };
 
-main(){
-	Circulo circulo;
-	string opcion;
-	float radio;
-	
-	cout << "Ingresa el radio del circulo: ";
-	cin >> circulo.radio;
-	
-	while(opcion != "s" || opcion != "S"){
-		cout << endl << "Selecciona que deseas calcular: " << endl << "(A)Area" << endl << "(P)Perimetro" << endl << "(S)Salir" << endl;
-		cin >> opcion;
-	
-		if(opcion == "a" || opcion == "A"){
-			cout << "El area del circulo es: " << circulo.Area() << endl;
-		}
-		else if(opcion == "p" || opcion == "P"){
-			cout << "El perimetro del circulo es: " << circulo.Perimetro() << endl;
-		}	
-	}
+int main() {
+    Circulo circulo;
+    string opcion;
+    float radio;
+
+    cout << "Ingresa el radio del círculo: ";
+    cin >> radio;
+    circulo.setRadio(radio);
+
+    while (true) {
+        cout << endl << "Selecciona qué deseas calcular: " << endl;
+        cout << "(A) Área" << endl;
+        cout << "(P) Perímetro" << endl;
+        cout << "(S) Salir" << endl;
+        cin >> opcion;
+
+        if (opcion == "a" || opcion == "A") {
+            cout << "El área del círculo es: " << circulo.calcularArea() << endl;
+        } else if (opcion == "p" || opcion == "P") {
+            cout << "El perímetro del círculo es: " << circulo.calcularPerimetro() << endl;
+        } else if (opcion == "s" || opcion == "S") {
+            cout << "Saliendo del programa..." << endl;
+            break;
+        } else {
+            cout << "Opción inválida. Por favor, selecciona una opción válida." << endl;
+        }
+    }
+
+    return 0;
 }
