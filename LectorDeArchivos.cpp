@@ -1,23 +1,23 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 using namespace std;
 
-main(){
-    ifstream archivo("archivo.txt");
+int main() {
+    string nombreArchivo = "archivo.txt";
+    ifstream archivo(nombreArchivo);
 
     if (archivo.is_open()) {
-        cout << "Archivo abierto correctamente.\nContenido:\n";
-
+        cout << "Archivo '" << nombreArchivo << "' abierto correctamente.\nContenido:\n";
         string linea;
         while (getline(archivo, linea)) {
             cout << linea << endl;
         }
-
         archivo.close();
+        cout << "Archivo '" << nombreArchivo << "' cerrado correctamente." << endl;
     } else {
-        cerr << "Error: No se pudo abrir el archivo." << endl;
+        cerr << "Error: No se pudo abrir el archivo '" << nombreArchivo << "'" << endl;
     }
-}
 
+    return 0;
+}
